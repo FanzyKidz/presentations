@@ -1,0 +1,38 @@
+{
+    "Abelardo Gonzales I am in San Antonio and I still can not login.": [
+        [
+            "Abelardo Gonzales I am",
+            "PERSON"
+        ],
+        [
+            "San Antonio",
+            "GPE"
+        ]
+    ],
+    "Jeff R Still no deposit, Still waiting. Of course Wells Fargo states Early Direct Deposit is not gauranteed...": [
+        [
+            "Jeff",
+            "PERSON"
+        ],
+        [
+            "Wells Fargo",
+            "ORG"
+        ],
+        [
+            "Early Direct Deposit",
+            "ORG"
+        ]
+    ],
+    "ANonymous Anybody else missing their early deposit? It&#x27;s an hour after the normal deposit time and I haven&#x27;t seen anything yet.": [
+        [
+            "ANonymous Anybody",
+            "PERSON"
+        ]
+    ],
+    "Verria-Nichole Can&#x27;t make credit card payments. Not even the transactions will load.": [
+        [
+            "Verria",
+            "GPE"
+        ]
+    ]
+}

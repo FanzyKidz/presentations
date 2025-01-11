@@ -1,0 +1,15 @@
+{
+    "Ihop We have a problem. Please try again a little later. when using zelle what is wrong with the browser?????": {
+        "sentiment_score": -0.22916666666666666,
+        "entities": [
+            [
+                "a little later",
+                "DATE"
+            ],
+            [
+                "zelle",
+                "PERSON"
+            ]
+        ]
+    }
+}

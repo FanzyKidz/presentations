@@ -1,0 +1,219 @@
+[
+    {
+        "comment": "Abelardo Gonzales I am in San Antonio and I still can not login.",
+        "sentiment_score": 0.0,
+        "sentiment": "neutral",
+        "entities": [
+            [
+                "Abelardo Gonzales I am",
+                "PERSON"
+            ],
+            [
+                "San Antonio",
+                "GPE"
+            ]
+        ],
+        "classifications": []
+    },
+    {
+        "comment": "Makinu Fox Cat is anyone having issues paying with their card online?",
+        "sentiment_score": 0.0,
+        "sentiment": "neutral",
+        "entities": [
+            [
+                "Fox Cat",
+                "PERSON"
+            ]
+        ],
+        "classifications": []
+    },
+    {
+        "comment": "Rod munch live in florida where hurricaine is hitting",
+        "sentiment_score": 0.13636363636363635,
+        "sentiment": "neutral",
+        "entities": [
+            [
+                "florida",
+                "GPE"
+            ]
+        ],
+        "classifications": []
+    },
+    {
+        "comment": "Rod munch Online Banking is temporarily unavailable",
+        "sentiment_score": 0.0,
+        "sentiment": "neutral",
+        "entities": [],
+        "classifications": [
+            "online banking"
+        ]
+    },
+    {
+        "comment": "Rod munch yea Online Banking is temporarily unavailable",
+        "sentiment_score": 0.0,
+        "sentiment": "neutral",
+        "entities": [],
+        "classifications": [
+            "online banking"
+        ]
+    },
+    {
+        "comment": "Kim Marasti can&#x27;t log in to app, says unavailable...anyone else?",
+        "sentiment_score": 0.0,
+        "sentiment": "neutral",
+        "entities": [
+            [
+                "Kim Marasti can&#x27;t",
+                "PERSON"
+            ]
+        ],
+        "classifications": []
+    },
+    {
+        "comment": "Glizzy Anyone get their direct deposit yet?",
+        "sentiment_score": 0.1,
+        "sentiment": "neutral",
+        "entities": [
+            [
+                "Glizzy Anyone",
+                "PERSON"
+            ]
+        ],
+        "classifications": [
+            "direct deposit"
+        ]
+    },
+    {
+        "comment": "Glizzy Nope",
+        "sentiment_score": 0.0,
+        "sentiment": "neutral",
+        "entities": [
+            [
+                "Glizzy",
+                "PERSON"
+            ]
+        ],
+        "classifications": []
+    },
+    {
+        "comment": "Daniel Any get early pay yet?",
+        "sentiment_score": 0.1,
+        "sentiment": "neutral",
+        "entities": [
+            [
+                "Daniel Any",
+                "PERSON"
+            ]
+        ],
+        "classifications": []
+    },
+    {
+        "comment": "Ihop We have a problem. Please try again a little later. when using zelle what is wrong with the browser?????",
+        "sentiment_score": -0.22916666666666666,
+        "sentiment": "negative",
+        "entities": [
+            [
+                "a little later",
+                "DATE"
+            ],
+            [
+                "zelle",
+                "PERSON"
+            ]
+        ],
+        "classifications": [
+            "Zelle"
+        ]
+    },
+    {
+        "comment": "ANonymous Ok, thanks. Just wanted to see if I was the only one with this issue.",
+        "sentiment_score": 0.2333333333333333,
+        "sentiment": "positive",
+        "entities": [
+            [
+                "ANonymous Ok",
+                "PERSON"
+            ]
+        ],
+        "classifications": []
+    },
+    {
+        "comment": "Jeff R Yes",
+        "sentiment_score": 0.0,
+        "sentiment": "neutral",
+        "entities": [
+            [
+                "Jeff",
+                "PERSON"
+            ]
+        ],
+        "classifications": []
+    },
+    {
+        "comment": "Jeff R Still no deposit, Still waiting. Of course Wells Fargo states Early Direct Deposit is not gauranteed...",
+        "sentiment_score": 0.1,
+        "sentiment": "neutral",
+        "entities": [
+            [
+                "Jeff",
+                "PERSON"
+            ],
+            [
+                "Wells Fargo",
+                "ORG"
+            ],
+            [
+                "Early Direct Deposit",
+                "ORG"
+            ]
+        ],
+        "classifications": [
+            "direct deposit"
+        ]
+    },
+    {
+        "comment": "ANonymous Anybody else missing their early deposit? It&#x27;s an hour after the normal deposit time and I haven&#x27;t seen anything yet.",
+        "sentiment_score": 0.016666666666666663,
+        "sentiment": "neutral",
+        "entities": [
+            [
+                "ANonymous Anybody",
+                "PERSON"
+            ]
+        ],
+        "classifications": []
+    },
+    {
+        "comment": "eric me either says unavailable I guess I will wait",
+        "sentiment_score": 0.0,
+        "sentiment": "neutral",
+        "entities": [
+            [
+                "eric",
+                "PERSON"
+            ]
+        ],
+        "classifications": []
+    },
+    {
+        "comment": "Tryse Can\u2019t use app to mobile deposit",
+        "sentiment_score": 0.0,
+        "sentiment": "neutral",
+        "entities": [],
+        "classifications": []
+    },
+    {
+        "comment": "Verria-Nichole Can&#x27;t make credit card payments. Not even the transactions will load.",
+        "sentiment_score": 0.0,
+        "sentiment": "neutral",
+        "entities": [
+            [
+                "Verria",
+                "GPE"
+            ]
+        ],
+        "classifications": [
+            "credit card"
+        ]
+    }
+]

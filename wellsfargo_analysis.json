@@ -1,0 +1,1373 @@
+{
+    "total_comments": 17,
+    "individual_analyses": [
+        {
+            "original_comment": "Abelardo Gonzales I am in San Antonio and I still can not login.",
+            "sentiment": {
+                "label": "neutral",
+                "score": 0
+            },
+            "detected_products": [],
+            "named_entities": [
+                {
+                    "text": "Abelardo Gonzales I am",
+                    "type": "PERSON"
+                },
+                {
+                    "text": "San Antonio",
+                    "type": "GPE"
+                }
+            ],
+            "dependencies": [
+                {
+                    "token": "Abelardo",
+                    "dependency": "compound",
+                    "head": "Gonzales"
+                },
+                {
+                    "token": "Gonzales",
+                    "dependency": "npadvmod",
+                    "head": "am"
+                },
+                {
+                    "token": "I",
+                    "dependency": "nsubj",
+                    "head": "am"
+                },
+                {
+                    "token": "am",
+                    "dependency": "ROOT",
+                    "head": "am"
+                },
+                {
+                    "token": "in",
+                    "dependency": "prep",
+                    "head": "am"
+                },
+                {
+                    "token": "San",
+                    "dependency": "compound",
+                    "head": "Antonio"
+                },
+                {
+                    "token": "Antonio",
+                    "dependency": "pobj",
+                    "head": "in"
+                },
+                {
+                    "token": "and",
+                    "dependency": "cc",
+                    "head": "am"
+                },
+                {
+                    "token": "I",
+                    "dependency": "nsubj",
+                    "head": "login"
+                },
+                {
+                    "token": "still",
+                    "dependency": "advmod",
+                    "head": "login"
+                },
+                {
+                    "token": "can",
+                    "dependency": "aux",
+                    "head": "login"
+                },
+                {
+                    "token": "not",
+                    "dependency": "neg",
+                    "head": "login"
+                },
+                {
+                    "token": "login",
+                    "dependency": "conj",
+                    "head": "am"
+                },
+                {
+                    "token": ".",
+                    "dependency": "punct",
+                    "head": "login"
+                }
+            ]
+        },
+        {
+            "original_comment": "Makinu Fox Cat is anyone having issues paying with their card online?",
+            "sentiment": {
+                "label": "neutral",
+                "score": 0
+            },
+            "detected_products": [],
+            "named_entities": [
+                {
+                    "text": "Fox Cat",
+                    "type": "PERSON"
+                }
+            ],
+            "dependencies": [
+                {
+                    "token": "Makinu",
+                    "dependency": "compound",
+                    "head": "Cat"
+                },
+                {
+                    "token": "Fox",
+                    "dependency": "compound",
+                    "head": "Cat"
+                },
+                {
+                    "token": "Cat",
+                    "dependency": "nsubj",
+                    "head": "is"
+                },
+                {
+                    "token": "is",
+                    "dependency": "ROOT",
+                    "head": "is"
+                },
+                {
+                    "token": "anyone",
+                    "dependency": "attr",
+                    "head": "is"
+                },
+                {
+                    "token": "having",
+                    "dependency": "acl",
+                    "head": "anyone"
+                },
+                {
+                    "token": "issues",
+                    "dependency": "dobj",
+                    "head": "having"
+                },
+                {
+                    "token": "paying",
+                    "dependency": "acl",
+                    "head": "issues"
+                },
+                {
+                    "token": "with",
+                    "dependency": "prep",
+                    "head": "paying"
+                },
+                {
+                    "token": "their",
+                    "dependency": "poss",
+                    "head": "card"
+                },
+                {
+                    "token": "card",
+                    "dependency": "pobj",
+                    "head": "with"
+                },
+                {
+                    "token": "online",
+                    "dependency": "advmod",
+                    "head": "paying"
+                },
+                {
+                    "token": "?",
+                    "dependency": "punct",
+                    "head": "is"
+                }
+            ]
+        },
+        {
+            "original_comment": "Rod munch live in florida where hurricaine is hitting",
+            "sentiment": {
+                "label": "neutral",
+                "score": 0
+            },
+            "detected_products": [],
+            "named_entities": [
+                {
+                    "text": "florida",
+                    "type": "GPE"
+                }
+            ],
+            "dependencies": [
+                {
+                    "token": "Rod",
+                    "dependency": "det",
+                    "head": "munch"
+                },
+                {
+                    "token": "munch",
+                    "dependency": "npadvmod",
+                    "head": "live"
+                },
+                {
+                    "token": "live",
+                    "dependency": "ROOT",
+                    "head": "live"
+                },
+                {
+                    "token": "in",
+                    "dependency": "prep",
+                    "head": "live"
+                },
+                {
+                    "token": "florida",
+                    "dependency": "pobj",
+                    "head": "in"
+                },
+                {
+                    "token": "where",
+                    "dependency": "advmod",
+                    "head": "hitting"
+                },
+                {
+                    "token": "hurricaine",
+                    "dependency": "nsubj",
+                    "head": "hitting"
+                },
+                {
+                    "token": "is",
+                    "dependency": "aux",
+                    "head": "hitting"
+                },
+                {
+                    "token": "hitting",
+                    "dependency": "advcl",
+                    "head": "live"
+                }
+            ]
+        },
+        {
+            "original_comment": "Rod munch Online Banking is temporarily unavailable",
+            "sentiment": {
+                "label": "neutral",
+                "score": 0
+            },
+            "detected_products": [
+                "online banking"
+            ],
+            "named_entities": [],
+            "dependencies": [
+                {
+                    "token": "Rod",
+                    "dependency": "compound",
+                    "head": "munch"
+                },
+                {
+                    "token": "munch",
+                    "dependency": "compound",
+                    "head": "Banking"
+                },
+                {
+                    "token": "Online",
+                    "dependency": "compound",
+                    "head": "Banking"
+                },
+                {
+                    "token": "Banking",
+                    "dependency": "nsubj",
+                    "head": "is"
+                },
+                {
+                    "token": "is",
+                    "dependency": "ROOT",
+                    "head": "is"
+                },
+                {
+                    "token": "temporarily",
+                    "dependency": "advmod",
+                    "head": "unavailable"
+                },
+                {
+                    "token": "unavailable",
+                    "dependency": "acomp",
+                    "head": "is"
+                }
+            ]
+        },
+        {
+            "original_comment": "Rod munch yea Online Banking is temporarily unavailable",
+            "sentiment": {
+                "label": "neutral",
+                "score": 0
+            },
+            "detected_products": [
+                "online banking"
+            ],
+            "named_entities": [],
+            "dependencies": [
+                {
+                    "token": "Rod",
+                    "dependency": "det",
+                    "head": "munch"
+                },
+                {
+                    "token": "munch",
+                    "dependency": "npadvmod",
+                    "head": "yea"
+                },
+                {
+                    "token": "yea",
+                    "dependency": "amod",
+                    "head": "Banking"
+                },
+                {
+                    "token": "Online",
+                    "dependency": "compound",
+                    "head": "Banking"
+                },
+                {
+                    "token": "Banking",
+                    "dependency": "nsubj",
+                    "head": "is"
+                },
+                {
+                    "token": "is",
+                    "dependency": "ROOT",
+                    "head": "is"
+                },
+                {
+                    "token": "temporarily",
+                    "dependency": "advmod",
+                    "head": "is"
+                },
+                {
+                    "token": "unavailable",
+                    "dependency": "acomp",
+                    "head": "is"
+                }
+            ]
+        },
+        {
+            "original_comment": "Kim Marasti can&#x27;t log in to app, says unavailable...anyone else?",
+            "sentiment": {
+                "label": "neutral",
+                "score": 0
+            },
+            "detected_products": [],
+            "named_entities": [
+                {
+                    "text": "Kim Marasti can&#x27;t",
+                    "type": "PERSON"
+                }
+            ],
+            "dependencies": [
+                {
+                    "token": "Kim",
+                    "dependency": "compound",
+                    "head": "Marasti"
+                },
+                {
+                    "token": "Marasti",
+                    "dependency": "compound",
+                    "head": "can&#x27;t"
+                },
+                {
+                    "token": "can&#x27;t",
+                    "dependency": "nsubj",
+                    "head": "log"
+                },
+                {
+                    "token": "log",
+                    "dependency": "ccomp",
+                    "head": "says"
+                },
+                {
+                    "token": "in",
+                    "dependency": "prt",
+                    "head": "log"
+                },
+                {
+                    "token": "to",
+                    "dependency": "prep",
+                    "head": "in"
+                },
+                {
+                    "token": "app",
+                    "dependency": "pobj",
+                    "head": "to"
+                },
+                {
+                    "token": ",",
+                    "dependency": "punct",
+                    "head": "log"
+                },
+                {
+                    "token": "says",
+                    "dependency": "ROOT",
+                    "head": "says"
+                },
+                {
+                    "token": "unavailable",
+                    "dependency": "acomp",
+                    "head": "says"
+                },
+                {
+                    "token": "...",
+                    "dependency": "punct",
+                    "head": "says"
+                },
+                {
+                    "token": "anyone",
+                    "dependency": "nsubj",
+                    "head": "says"
+                },
+                {
+                    "token": "else",
+                    "dependency": "advmod",
+                    "head": "anyone"
+                },
+                {
+                    "token": "?",
+                    "dependency": "punct",
+                    "head": "says"
+                }
+            ]
+        },
+        {
+            "original_comment": "Glizzy Anyone get their direct deposit yet?",
+            "sentiment": {
+                "label": "neutral",
+                "score": 0
+            },
+            "detected_products": [
+                "direct deposit"
+            ],
+            "named_entities": [
+                {
+                    "text": "Glizzy Anyone",
+                    "type": "PERSON"
+                }
+            ],
+            "dependencies": [
+                {
+                    "token": "Glizzy",
+                    "dependency": "compound",
+                    "head": "Anyone"
+                },
+                {
+                    "token": "Anyone",
+                    "dependency": "nsubj",
+                    "head": "get"
+                },
+                {
+                    "token": "get",
+                    "dependency": "ROOT",
+                    "head": "get"
+                },
+                {
+                    "token": "their",
+                    "dependency": "poss",
+                    "head": "deposit"
+                },
+                {
+                    "token": "direct",
+                    "dependency": "amod",
+                    "head": "deposit"
+                },
+                {
+                    "token": "deposit",
+                    "dependency": "dobj",
+                    "head": "get"
+                },
+                {
+                    "token": "yet",
+                    "dependency": "advmod",
+                    "head": "get"
+                },
+                {
+                    "token": "?",
+                    "dependency": "punct",
+                    "head": "get"
+                }
+            ]
+        },
+        {
+            "original_comment": "Glizzy Nope",
+            "sentiment": {
+                "label": "neutral",
+                "score": 0
+            },
+            "detected_products": [],
+            "named_entities": [
+                {
+                    "text": "Glizzy",
+                    "type": "PERSON"
+                }
+            ],
+            "dependencies": [
+                {
+                    "token": "Glizzy",
+                    "dependency": "compound",
+                    "head": "Nope"
+                },
+                {
+                    "token": "Nope",
+                    "dependency": "ROOT",
+                    "head": "Nope"
+                }
+            ]
+        },
+        {
+            "original_comment": "Daniel Any get early pay yet?",
+            "sentiment": {
+                "label": "neutral",
+                "score": 0
+            },
+            "detected_products": [],
+            "named_entities": [
+                {
+                    "text": "Daniel Any",
+                    "type": "PERSON"
+                }
+            ],
+            "dependencies": [
+                {
+                    "token": "Daniel",
+                    "dependency": "compound",
+                    "head": "Any"
+                },
+                {
+                    "token": "Any",
+                    "dependency": "nsubj",
+                    "head": "get"
+                },
+                {
+                    "token": "get",
+                    "dependency": "ROOT",
+                    "head": "get"
+                },
+                {
+                    "token": "early",
+                    "dependency": "amod",
+                    "head": "pay"
+                },
+                {
+                    "token": "pay",
+                    "dependency": "dobj",
+                    "head": "get"
+                },
+                {
+                    "token": "yet",
+                    "dependency": "advmod",
+                    "head": "get"
+                },
+                {
+                    "token": "?",
+                    "dependency": "punct",
+                    "head": "get"
+                }
+            ]
+        },
+        {
+            "original_comment": "Ihop We have a problem. Please try again a little later. when using zelle what is wrong with the browser?????",
+            "sentiment": {
+                "label": "neutral",
+                "score": -1
+            },
+            "detected_products": [
+                "Zelle"
+            ],
+            "named_entities": [
+                {
+                    "text": "a little later",
+                    "type": "DATE"
+                },
+                {
+                    "text": "zelle",
+                    "type": "PERSON"
+                }
+            ],
+            "dependencies": [
+                {
+                    "token": "Ihop",
+                    "dependency": "npadvmod",
+                    "head": "have"
+                },
+                {
+                    "token": "We",
+                    "dependency": "nsubj",
+                    "head": "have"
+                },
+                {
+                    "token": "have",
+                    "dependency": "ROOT",
+                    "head": "have"
+                },
+                {
+                    "token": "a",
+                    "dependency": "det",
+                    "head": "problem"
+                },
+                {
+                    "token": "problem",
+                    "dependency": "dobj",
+                    "head": "have"
+                },
+                {
+                    "token": ".",
+                    "dependency": "punct",
+                    "head": "have"
+                },
+                {
+                    "token": "Please",
+                    "dependency": "intj",
+                    "head": "try"
+                },
+                {
+                    "token": "try",
+                    "dependency": "ROOT",
+                    "head": "try"
+                },
+                {
+                    "token": "again",
+                    "dependency": "advmod",
+                    "head": "try"
+                },
+                {
+                    "token": "a",
+                    "dependency": "det",
+                    "head": "little"
+                },
+                {
+                    "token": "little",
+                    "dependency": "npadvmod",
+                    "head": "later"
+                },
+                {
+                    "token": "later",
+                    "dependency": "advmod",
+                    "head": "try"
+                },
+                {
+                    "token": ".",
+                    "dependency": "punct",
+                    "head": "try"
+                },
+                {
+                    "token": "when",
+                    "dependency": "advmod",
+                    "head": "using"
+                },
+                {
+                    "token": "using",
+                    "dependency": "ROOT",
+                    "head": "using"
+                },
+                {
+                    "token": "zelle",
+                    "dependency": "dobj",
+                    "head": "using"
+                },
+                {
+                    "token": "what",
+                    "dependency": "nsubj",
+                    "head": "is"
+                },
+                {
+                    "token": "is",
+                    "dependency": "ccomp",
+                    "head": "using"
+                },
+                {
+                    "token": "wrong",
+                    "dependency": "acomp",
+                    "head": "is"
+                },
+                {
+                    "token": "with",
+                    "dependency": "prep",
+                    "head": "wrong"
+                },
+                {
+                    "token": "the",
+                    "dependency": "det",
+                    "head": "browser"
+                },
+                {
+                    "token": "browser",
+                    "dependency": "pobj",
+                    "head": "with"
+                },
+                {
+                    "token": "?",
+                    "dependency": "punct",
+                    "head": "using"
+                },
+                {
+                    "token": "?",
+                    "dependency": "punct",
+                    "head": "using"
+                },
+                {
+                    "token": "?",
+                    "dependency": "punct",
+                    "head": "using"
+                },
+                {
+                    "token": "?",
+                    "dependency": "punct",
+                    "head": "using"
+                },
+                {
+                    "token": "?",
+                    "dependency": "punct",
+                    "head": "using"
+                }
+            ]
+        },
+        {
+            "original_comment": "ANonymous Ok, thanks. Just wanted to see if I was the only one with this issue.",
+            "sentiment": {
+                "label": "neutral",
+                "score": -1
+            },
+            "detected_products": [],
+            "named_entities": [
+                {
+                    "text": "ANonymous Ok",
+                    "type": "PERSON"
+                }
+            ],
+            "dependencies": [
+                {
+                    "token": "ANonymous",
+                    "dependency": "compound",
+                    "head": "Ok"
+                },
+                {
+                    "token": "Ok",
+                    "dependency": "ROOT",
+                    "head": "Ok"
+                },
+                {
+                    "token": ",",
+                    "dependency": "punct",
+                    "head": "Ok"
+                },
+                {
+                    "token": "thanks",
+                    "dependency": "appos",
+                    "head": "Ok"
+                },
+                {
+                    "token": ".",
+                    "dependency": "punct",
+                    "head": "Ok"
+                },
+                {
+                    "token": "Just",
+                    "dependency": "advmod",
+                    "head": "wanted"
+                },
+                {
+                    "token": "wanted",
+                    "dependency": "ROOT",
+                    "head": "wanted"
+                },
+                {
+                    "token": "to",
+                    "dependency": "aux",
+                    "head": "see"
+                },
+                {
+                    "token": "see",
+                    "dependency": "xcomp",
+                    "head": "wanted"
+                },
+                {
+                    "token": "if",
+                    "dependency": "mark",
+                    "head": "was"
+                },
+                {
+                    "token": "I",
+                    "dependency": "nsubj",
+                    "head": "was"
+                },
+                {
+                    "token": "was",
+                    "dependency": "ccomp",
+                    "head": "see"
+                },
+                {
+                    "token": "the",
+                    "dependency": "det",
+                    "head": "one"
+                },
+                {
+                    "token": "only",
+                    "dependency": "amod",
+                    "head": "one"
+                },
+                {
+                    "token": "one",
+                    "dependency": "attr",
+                    "head": "was"
+                },
+                {
+                    "token": "with",
+                    "dependency": "prep",
+                    "head": "one"
+                },
+                {
+                    "token": "this",
+                    "dependency": "det",
+                    "head": "issue"
+                },
+                {
+                    "token": "issue",
+                    "dependency": "pobj",
+                    "head": "with"
+                },
+                {
+                    "token": ".",
+                    "dependency": "punct",
+                    "head": "wanted"
+                }
+            ]
+        },
+        {
+            "original_comment": "Jeff R Yes",
+            "sentiment": {
+                "label": "neutral",
+                "score": 0
+            },
+            "detected_products": [],
+            "named_entities": [
+                {
+                    "text": "Jeff",
+                    "type": "PERSON"
+                }
+            ],
+            "dependencies": [
+                {
+                    "token": "Jeff",
+                    "dependency": "compound",
+                    "head": "R"
+                },
+                {
+                    "token": "R",
+                    "dependency": "compound",
+                    "head": "Yes"
+                },
+                {
+                    "token": "Yes",
+                    "dependency": "ROOT",
+                    "head": "Yes"
+                }
+            ]
+        },
+        {
+            "original_comment": "Jeff R Still no deposit, Still waiting. Of course Wells Fargo states Early Direct Deposit is not gauranteed...",
+            "sentiment": {
+                "label": "neutral",
+                "score": 0
+            },
+            "detected_products": [
+                "direct deposit",
+                "wells fargo"
+            ],
+            "named_entities": [
+                {
+                    "text": "Jeff",
+                    "type": "PERSON"
+                },
+                {
+                    "text": "Wells Fargo",
+                    "type": "ORG"
+                },
+                {
+                    "text": "Early Direct Deposit",
+                    "type": "ORG"
+                }
+            ],
+            "dependencies": [
+                {
+                    "token": "Jeff",
+                    "dependency": "compound",
+                    "head": "R"
+                },
+                {
+                    "token": "R",
+                    "dependency": "nsubj",
+                    "head": "waiting"
+                },
+                {
+                    "token": "Still",
+                    "dependency": "advmod",
+                    "head": "deposit"
+                },
+                {
+                    "token": "no",
+                    "dependency": "det",
+                    "head": "deposit"
+                },
+                {
+                    "token": "deposit",
+                    "dependency": "appos",
+                    "head": "R"
+                },
+                {
+                    "token": ",",
+                    "dependency": "punct",
+                    "head": "waiting"
+                },
+                {
+                    "token": "Still",
+                    "dependency": "advmod",
+                    "head": "waiting"
+                },
+                {
+                    "token": "waiting",
+                    "dependency": "ROOT",
+                    "head": "waiting"
+                },
+                {
+                    "token": ".",
+                    "dependency": "punct",
+                    "head": "waiting"
+                },
+                {
+                    "token": "Of",
+                    "dependency": "advmod",
+                    "head": "course"
+                },
+                {
+                    "token": "course",
+                    "dependency": "advmod",
+                    "head": "states"
+                },
+                {
+                    "token": "Wells",
+                    "dependency": "compound",
+                    "head": "Fargo"
+                },
+                {
+                    "token": "Fargo",
+                    "dependency": "nsubj",
+                    "head": "states"
+                },
+                {
+                    "token": "states",
+                    "dependency": "ROOT",
+                    "head": "states"
+                },
+                {
+                    "token": "Early",
+                    "dependency": "compound",
+                    "head": "Deposit"
+                },
+                {
+                    "token": "Direct",
+                    "dependency": "compound",
+                    "head": "Deposit"
+                },
+                {
+                    "token": "Deposit",
+                    "dependency": "nsubjpass",
+                    "head": "gauranteed"
+                },
+                {
+                    "token": "is",
+                    "dependency": "auxpass",
+                    "head": "gauranteed"
+                },
+                {
+                    "token": "not",
+                    "dependency": "neg",
+                    "head": "gauranteed"
+                },
+                {
+                    "token": "gauranteed",
+                    "dependency": "ccomp",
+                    "head": "states"
+                },
+                {
+                    "token": "...",
+                    "dependency": "punct",
+                    "head": "states"
+                }
+            ]
+        },
+        {
+            "original_comment": "ANonymous Anybody else missing their early deposit? It&#x27;s an hour after the normal deposit time and I haven&#x27;t seen anything yet.",
+            "sentiment": {
+                "label": "neutral",
+                "score": 0
+            },
+            "detected_products": [],
+            "named_entities": [
+                {
+                    "text": "ANonymous Anybody",
+                    "type": "PERSON"
+                }
+            ],
+            "dependencies": [
+                {
+                    "token": "ANonymous",
+                    "dependency": "compound",
+                    "head": "Anybody"
+                },
+                {
+                    "token": "Anybody",
+                    "dependency": "nsubj",
+                    "head": "missing"
+                },
+                {
+                    "token": "else",
+                    "dependency": "advmod",
+                    "head": "Anybody"
+                },
+                {
+                    "token": "missing",
+                    "dependency": "ROOT",
+                    "head": "missing"
+                },
+                {
+                    "token": "their",
+                    "dependency": "poss",
+                    "head": "deposit"
+                },
+                {
+                    "token": "early",
+                    "dependency": "amod",
+                    "head": "deposit"
+                },
+                {
+                    "token": "deposit",
+                    "dependency": "dobj",
+                    "head": "missing"
+                },
+                {
+                    "token": "?",
+                    "dependency": "punct",
+                    "head": "missing"
+                },
+                {
+                    "token": "It&#x27;s",
+                    "dependency": "ROOT",
+                    "head": "It&#x27;s"
+                },
+                {
+                    "token": "an",
+                    "dependency": "det",
+                    "head": "hour"
+                },
+                {
+                    "token": "hour",
+                    "dependency": "npadvmod",
+                    "head": "after"
+                },
+                {
+                    "token": "after",
+                    "dependency": "prep",
+                    "head": "It&#x27;s"
+                },
+                {
+                    "token": "the",
+                    "dependency": "det",
+                    "head": "time"
+                },
+                {
+                    "token": "normal",
+                    "dependency": "amod",
+                    "head": "time"
+                },
+                {
+                    "token": "deposit",
+                    "dependency": "compound",
+                    "head": "time"
+                },
+                {
+                    "token": "time",
+                    "dependency": "pobj",
+                    "head": "after"
+                },
+                {
+                    "token": "and",
+                    "dependency": "cc",
+                    "head": "seen"
+                },
+                {
+                    "token": "I",
+                    "dependency": "nsubj",
+                    "head": "seen"
+                },
+                {
+                    "token": "haven&#x27;t",
+                    "dependency": "aux",
+                    "head": "seen"
+                },
+                {
+                    "token": "seen",
+                    "dependency": "ROOT",
+                    "head": "seen"
+                },
+                {
+                    "token": "anything",
+                    "dependency": "dobj",
+                    "head": "seen"
+                },
+                {
+                    "token": "yet",
+                    "dependency": "advmod",
+                    "head": "seen"
+                },
+                {
+                    "token": ".",
+                    "dependency": "punct",
+                    "head": "seen"
+                }
+            ]
+        },
+        {
+            "original_comment": "eric me either says unavailable I guess I will wait",
+            "sentiment": {
+                "label": "neutral",
+                "score": 0
+            },
+            "detected_products": [],
+            "named_entities": [
+                {
+                    "text": "eric",
+                    "type": "PERSON"
+                }
+            ],
+            "dependencies": [
+                {
+                    "token": "eric",
+                    "dependency": "nsubj",
+                    "head": "says"
+                },
+                {
+                    "token": "me",
+                    "dependency": "dobj",
+                    "head": "eric"
+                },
+                {
+                    "token": "either",
+                    "dependency": "preconj",
+                    "head": "says"
+                },
+                {
+                    "token": "says",
+                    "dependency": "ROOT",
+                    "head": "says"
+                },
+                {
+                    "token": "unavailable",
+                    "dependency": "dobj",
+                    "head": "says"
+                },
+                {
+                    "token": "I",
+                    "dependency": "nsubj",
+                    "head": "guess"
+                },
+                {
+                    "token": "guess",
+                    "dependency": "ccomp",
+                    "head": "says"
+                },
+                {
+                    "token": "I",
+                    "dependency": "nsubj",
+                    "head": "wait"
+                },
+                {
+                    "token": "will",
+                    "dependency": "aux",
+                    "head": "wait"
+                },
+                {
+                    "token": "wait",
+                    "dependency": "ccomp",
+                    "head": "guess"
+                }
+            ]
+        },
+        {
+            "original_comment": "Tryse Can\u2019t use app to mobile deposit",
+            "sentiment": {
+                "label": "neutral",
+                "score": 0
+            },
+            "detected_products": [],
+            "named_entities": [],
+            "dependencies": [
+                {
+                    "token": "Tryse",
+                    "dependency": "nsubj",
+                    "head": "use"
+                },
+                {
+                    "token": "Ca",
+                    "dependency": "aux",
+                    "head": "use"
+                },
+                {
+                    "token": "n\u2019t",
+                    "dependency": "neg",
+                    "head": "use"
+                },
+                {
+                    "token": "use",
+                    "dependency": "ROOT",
+                    "head": "use"
+                },
+                {
+                    "token": "app",
+                    "dependency": "dobj",
+                    "head": "use"
+                },
+                {
+                    "token": "to",
+                    "dependency": "prep",
+                    "head": "use"
+                },
+                {
+                    "token": "mobile",
+                    "dependency": "amod",
+                    "head": "deposit"
+                },
+                {
+                    "token": "deposit",
+                    "dependency": "pobj",
+                    "head": "to"
+                }
+            ]
+        },
+        {
+            "original_comment": "Verria-Nichole Can&#x27;t make credit card payments. Not even the transactions will load.",
+            "sentiment": {
+                "label": "neutral",
+                "score": 0
+            },
+            "detected_products": [
+                "credit card"
+            ],
+            "named_entities": [
+                {
+                    "text": "Verria",
+                    "type": "GPE"
+                }
+            ],
+            "dependencies": [
+                {
+                    "token": "Verria",
+                    "dependency": "compound",
+                    "head": "Can&#x27;t"
+                },
+                {
+                    "token": "-",
+                    "dependency": "punct",
+                    "head": "Can&#x27;t"
+                },
+                {
+                    "token": "Nichole",
+                    "dependency": "compound",
+                    "head": "Can&#x27;t"
+                },
+                {
+                    "token": "Can&#x27;t",
+                    "dependency": "nsubj",
+                    "head": "make"
+                },
+                {
+                    "token": "make",
+                    "dependency": "ROOT",
+                    "head": "make"
+                },
+                {
+                    "token": "credit",
+                    "dependency": "compound",
+                    "head": "card"
+                },
+                {
+                    "token": "card",
+                    "dependency": "compound",
+                    "head": "payments"
+                },
+                {
+                    "token": "payments",
+                    "dependency": "dobj",
+                    "head": "make"
+                },
+                {
+                    "token": ".",
+                    "dependency": "punct",
+                    "head": "make"
+                },
+                {
+                    "token": "Not",
+                    "dependency": "neg",
+                    "head": "transactions"
+                },
+                {
+                    "token": "even",
+                    "dependency": "advmod",
+                    "head": "transactions"
+                },
+                {
+                    "token": "the",
+                    "dependency": "det",
+                    "head": "transactions"
+                },
+                {
+                    "token": "transactions",
+                    "dependency": "nsubj",
+                    "head": "load"
+                },
+                {
+                    "token": "will",
+                    "dependency": "aux",
+                    "head": "load"
+                },
+                {
+                    "token": "load",
+                    "dependency": "ROOT",
+                    "head": "load"
+                },
+                {
+                    "token": ".",
+                    "dependency": "punct",
+                    "head": "load"
+                }
+            ]
+        }
+    ],
+    "overall_sentiment_summary": {
+        "positive": 0,
+        "neutral": 17,
+        "negative": 0
+    },
+    "product_sentiment_summary": {
+        "online banking": {
+            "positive": 0,
+            "neutral": 2,
+            "negative": 0,
+            "total_mentions": 2
+        },
+        "direct deposit": {
+            "positive": 0,
+            "neutral": 2,
+            "negative": 0,
+            "total_mentions": 2
+        },
+        "Zelle": {
+            "positive": 0,
+            "neutral": 1,
+            "negative": 0,
+            "total_mentions": 1
+        },
+        "wells fargo": {
+            "positive": 0,
+            "neutral": 1,
+            "negative": 0,
+            "total_mentions": 1
+        },
+        "credit card": {
+            "positive": 0,
+            "neutral": 1,
+            "negative": 0,
+            "total_mentions": 1
+        }
+    }
+}
