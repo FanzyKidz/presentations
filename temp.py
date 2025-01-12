@@ -193,3 +193,55 @@ def query_documents(request: QueryRequest):
         return {"results": [result.dict() for result in results]}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+
+        from sentence_transformers import SentenceTransformer
+import chromadb
+from chromadb.utils import embedding_functions
+
+# Initialize the SentenceTransformer model
+model = SentenceTransformer('all-MiniLM-L6-v2')
+
+# Define an embedding function for ChromeDB
+def embedding_func(texts):
+    return model.encode(texts).tolist()
+
+# Initialize ChromeDB
+client = chromadb.PersistentClient(path="./chromedb_storage")
+collection_name = "text_embeddings"
+
+# Create or get a collection in ChromeDB
+collection = client.get_or_create_collection(
+    name=collection_name,
+    embedding_function=embedding_func
+)
+
+# Add documents to ChromeDB with embeddings
+documents = [
+    {"id": "1", "content": "The sky is blue."},
+    {"id": "2", "content": "The grass is green."},
+    {"id": "3", "content": "The sun is bright today."}
+]
+
+for doc in documents:
+    collection.add(
+        documents=[doc["content"]],
+        metadatas=[{"source": f"doc_{doc['id']}"}],
+        ids=[doc["id"]]
+    )
+
+# Query similar documents
+query_text = "What color is the sky?"
+query_embedding = embedding_func([query_text])[0]
+
+# Perform a similarity search
+results = collection.query(
+    query_embeddings=[query_embedding],
+    n_results=3  # Number of similar documents to return
+)
+
+# Display results
+for i, result in enumerate(results["documents"][0]):
+    print(f"Result {i+1}: {result}")
+
