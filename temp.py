@@ -212,11 +212,14 @@ from chromadb.utils import embedding_functions
 model_path = "./local-llm-model"
 model = SentenceTransformer(model_path)
 
-# Define the embedding function
-def embedding_func(texts):
+# Define the embedding function (matching ChromeDB's required signature)
+def embedding_func(texts: list) -> list:
+    # Ensure input is a list of strings
     if not isinstance(texts, list) or not all(isinstance(t, str) for t in texts):
         raise ValueError("Input to embedding function must be a list of strings.")
-    return model.encode(texts, convert_to_tensor=False).tolist()
+    # Generate embeddings and return as list of lists
+    embeddings = model.encode(texts, convert_to_tensor=False)
+    return embeddings.tolist()
 
 # Initialize ChromeDB client
 client = chromadb.PersistentClient(path="./chromedb_storage")
@@ -229,7 +232,7 @@ if collection_name in [c.name for c in client.list_collections()]:
 # Create a new collection with the embedding function
 collection = client.get_or_create_collection(
     name=collection_name,
-    embedding_function=embedding_func
+    embedding_function=embedding_func  # Ensure the correct embedding function is passed
 )
 
 # Add documents
