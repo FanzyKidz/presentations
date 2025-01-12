@@ -196,28 +196,43 @@ def query_documents(request: QueryRequest):
 
 
 
-        from sentence_transformers import SentenceTransformer
+
+
+
+
+
+
+
+
+from sentence_transformers import SentenceTransformer
 import chromadb
 from chromadb.utils import embedding_functions
 
-# Initialize the SentenceTransformer model
-model = SentenceTransformer('all-MiniLM-L6-v2')
+# Load local SentenceTransformer model
+model_path = "./local-llm-model"
+model = SentenceTransformer(model_path)
 
-# Define an embedding function for ChromeDB
+# Define the embedding function
 def embedding_func(texts):
-    return model.encode(texts).tolist()
+    if not isinstance(texts, list) or not all(isinstance(t, str) for t in texts):
+        raise ValueError("Input to embedding function must be a list of strings.")
+    return model.encode(texts, convert_to_tensor=False).tolist()
 
-# Initialize ChromeDB
+# Initialize ChromeDB client
 client = chromadb.PersistentClient(path="./chromedb_storage")
 collection_name = "text_embeddings"
 
-# Create or get a collection in ChromeDB
+# Delete the old collection if it exists
+if collection_name in [c.name for c in client.list_collections()]:
+    client.delete_collection(name=collection_name)
+
+# Create a new collection with the embedding function
 collection = client.get_or_create_collection(
     name=collection_name,
     embedding_function=embedding_func
 )
 
-# Add documents to ChromeDB with embeddings
+# Add documents
 documents = [
     {"id": "1", "content": "The sky is blue."},
     {"id": "2", "content": "The grass is green."},
@@ -235,13 +250,12 @@ for doc in documents:
 query_text = "What color is the sky?"
 query_embedding = embedding_func([query_text])[0]
 
-# Perform a similarity search
+# Perform similarity search
 results = collection.query(
     query_embeddings=[query_embedding],
-    n_results=3  # Number of similar documents to return
+    n_results=3
 )
 
 # Display results
 for i, result in enumerate(results["documents"][0]):
     print(f"Result {i+1}: {result}")
-
