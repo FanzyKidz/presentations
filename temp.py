@@ -149,3 +149,47 @@ retriever = vectorstore.as_retriever()
 results = retriever.get_relevant_documents("machine learning")
 print(results)
 
+
+
+
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from typing import List, Dict
+from langchain.vectorstores import Chroma
+from langchain.embeddings import HuggingFaceEmbeddings
+
+app = FastAPI()
+
+class AddDocumentsRequest(BaseModel):
+    documents: List[str]
+    metadatas: List[Dict[str, str]]
+    ids: List[str]
+
+class QueryRequest(BaseModel):
+    query: str
+
+# Initialize embeddings and ChromaDB
+embeddings = HuggingFaceEmbeddings(model_name="./Users/u801658/unilang/Lama")
+vectorstore = Chroma(persist_directory="./chroma_db", embedding_function=embeddings)
+
+@app.post("/add-documents")
+def add_documents(request: AddDocumentsRequest):
+    try:
+        vectorstore.add_texts(
+            texts=request.documents,
+            metadatas=request.metadatas,
+            ids=request.ids
+        )
+        vectorstore.persist()
+        return {"message": "Documents added successfully."}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/query")
+def query_documents(request: QueryRequest):
+    try:
+        retriever = vectorstore.as_retriever()
+        results = retriever.get_relevant_documents(request.query)
+        return {"results": [result.dict() for result in results]}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
