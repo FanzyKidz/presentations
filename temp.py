@@ -108,3 +108,44 @@ def generate_content(request: PromptRequest):
 # 3. Ensure ChromaDB is properly initialized and populated with data.
 # 4. Run the application: `uvicorn main:app --reload`
 # 5. Access the API documentation at `http://127.0.0.1:8000/docs`
+
+
+
+
+from langchain.vectorstores import Chroma
+from langchain.embeddings import HuggingFaceEmbeddings
+
+# Sample data
+documents = [
+    "This is the first document about machine learning.",
+    "The second document discusses natural language processing.",
+    "This document talks about AI applications in healthcare."
+]
+
+metadatas = [
+    {"source": "ml_docs", "category": "machine_learning"},
+    {"source": "nlp_docs", "category": "nlp"},
+    {"source": "ai_docs", "category": "healthcare"}
+]
+
+ids = ["doc1", "doc2", "doc3"]
+
+# Initialize embeddings and ChromaDB
+embeddings = HuggingFaceEmbeddings(model_name="./Users/u801658/unilang/Lama")
+vectorstore = Chroma(persist_directory="./chroma_db", embedding_function=embeddings)
+
+# Add data to ChromaDB
+vectorstore.add_texts(
+    texts=documents,
+    metadatas=metadatas,
+    ids=ids
+)
+
+# Persist the database
+vectorstore.persist()
+
+# Verify the saved data
+retriever = vectorstore.as_retriever()
+results = retriever.get_relevant_documents("machine learning")
+print(results)
+
