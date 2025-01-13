@@ -1,0 +1,3 @@
+{
+  "chat_template": "{% for message in messages %}{% if message['role'] == 'user' %}<|User|>:{% elif message['role'] == 'assistant' %}<|Assistant|>{% endif %} {{message['content']}}\n\n{% endfor %}{% if add_generation_prompt %}<|Assistant|>:{% endif %}"
+}
