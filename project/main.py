@@ -1,27 +1,24 @@
 from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
-import openai
 from typing import List
+import mlx.core as mx
+from mlx_lm import load, generate
 import os
-from dotenv import load_dotenv
-
-# Load environment variables
-load_dotenv()
-
-# Initialize OpenAI client
-client = openai.OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
 app = FastAPI()
 
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # React dev server
+    allow_origins=["http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Load the model (Mistral 7B by default)
+model, tokenizer = load("mlx-community/Mistral-7B-v0.1-hf-4bit-mlx")
 
 async def process_stream(message: str, files: List[UploadFile]):
     # Process files if present
@@ -36,20 +33,16 @@ async def process_stream(message: str, files: List[UploadFile]):
     if file_contents:
         user_content += "\n\nAttached files:\n" + "\n".join(file_contents)
 
-    # Create streaming response using OpenAI
-    stream = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_content}
-        ],
-        stream=True
-    )
+    # Prepare prompt
+    prompt = f"{system_prompt}\n\nUser: {user_content}\n\nAssistant:"
 
-    # Stream the response
-    for chunk in stream:
-        if chunk.choices[0].delta.content is not None:
-            yield chunk.choices[0].delta.content
+    # Generate response with streaming
+    tokens = []
+    for token in generate(model, tokenizer, prompt=prompt, max_tokens=500):
+        tokens.append(token)
+        # Convert token to text and yield
+        text = tokenizer.decode(mx.array(tokens))
+        yield text
 
 @app.post("/chat")
 async def chat(
