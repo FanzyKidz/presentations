@@ -44,7 +44,7 @@ async def process_stream(message: str, files: Optional[List[UploadFile]] = None)
         previous_text = ""
 
         for token in generate(model, tokenizer, prompt=prompt, max_tokens=500):
-            if isinstance(token, int):  # Ensure token is an integer
+            if isinstance(token, int):  # Token is an integer
                 tokens.append(token)
                 current_text = tokenizer.decode(mx.array(tokens))
                 new_text = current_text[len(previous_text):]
@@ -53,7 +53,8 @@ async def process_stream(message: str, files: Optional[List[UploadFile]] = None)
                 if new_text:
                     yield f"data: {json.dumps({'text': new_text})}\n\n"
             else:
-                print(f"Invalid token type: {token} (expected int)")
+                # Handle unexpected token types
+                print(f"Skipping invalid token: {token} (type: {type(token)})")
 
         yield "data: [DONE]\n\n"
     except Exception as e:
