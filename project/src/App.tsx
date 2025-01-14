@@ -8,6 +8,7 @@ import { Bot } from 'lucide-react';
 function App() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -31,36 +32,23 @@ function App() {
 
     setMessages(prev => [...prev, userMessage]);
     setIsLoading(true);
+    setError(null);
 
     try {
-      const stream = await sendMessage(content, files);
-      let assistantMessage = '';
-
-      const assistantMessageId = Date.now().toString();
-      for await (const chunk of stream) {
-        assistantMessage += chunk;
-        setMessages(prev => {
-          const existing = prev.find(m => m.id === assistantMessageId);
-          if (existing) {
-            return prev.map(m =>
-              m.id === assistantMessageId
-                ? { ...m, content: assistantMessage }
-                : m
-            );
-          }
-          return [
-            ...prev,
-            {
-              id: assistantMessageId,
-              content: assistantMessage,
-              role: 'assistant',
-              timestamp: new Date(),
-            },
-          ];
-        });
-      }
-    } catch (error) {
-      console.error('Error sending message:', error);
+      const response = await sendMessage(content, files);
+      
+      setMessages(prev => [
+        ...prev,
+        {
+          id: (Date.now() + 1).toString(),
+          content: response,
+          role: 'assistant',
+          timestamp: new Date(),
+        },
+      ]);
+    } catch (err) {
+      console.error('Error sending message:', err);
+      setError(err instanceof Error ? err.message : 'An error occurred while sending the message');
     } finally {
       setIsLoading(false);
     }
@@ -79,6 +67,18 @@ function App() {
         {messages.map(message => (
           <ChatMessage key={message.id} message={message} />
         ))}
+        {error && (
+          <div className="p-4 bg-red-50 text-red-600 rounded-lg">
+            Error: {error}
+          </div>
+        )}
+        {isLoading && (
+          <div className="flex items-center justify-center p-4">
+            <div className="animate-pulse text-gray-500">
+              AI is thinking...
+            </div>
+          </div>
+        )}
         <div ref={messagesEndRef} />
       </main>
 
