@@ -1,6 +1,5 @@
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
 from typing import List, Optional
 import mlx.core as mx
 from mlx_lm import load, generate
@@ -24,7 +23,7 @@ try:
 except Exception as e:
     raise RuntimeError(f"Error loading the model: {e}")
 
-async def process_stream(message: str, files: Optional[List[UploadFile]] = None):
+async def process_request(message: str, files: Optional[List[UploadFile]] = None):
     try:
         # Process files if present
         file_contents = []
@@ -40,25 +39,15 @@ async def process_stream(message: str, files: Optional[List[UploadFile]] = None)
         prompt += "\n\nAssistant:"
 
         # Generate response
-        tokens = []
-        previous_text = ""
+        generated_text = generate(model, tokenizer, prompt=prompt, max_tokens=500)
 
-        async for generated_text in generate(model, tokenizer, prompt=prompt, max_tokens=500):
-            if isinstance(generated_text, str):  # Directly handle string output
-                new_text = generated_text[len(previous_text):]
-                previous_text = generated_text
+        if isinstance(generated_text, str):
+            return {"text": generated_text}
+        else:
+            raise ValueError(f"Unexpected output from generate: {type(generated_text)}")
 
-                if new_text:
-                    yield f"data: {json.dumps({'text': new_text})}\n\n"
-            else:
-                print(f"Skipping invalid output: {generated_text} (type: {type(generated_text)})")
-
-        yield "data: [DONE]\n\n"
-        
     except Exception as e:
-        print(f"Error in stream generation: {str(e)}")
-        yield f"data: {json.dumps({'error': str(e)})}\n\n"
-
+        raise HTTPException(status_code=500, detail=f"Error generating response: {str(e)}")
 
 @app.post("/chat")
 async def chat(
@@ -71,10 +60,8 @@ async def chat(
     if not message or message.strip() == "":
         raise HTTPException(status_code=400, detail="Message is required")
 
-    return StreamingResponse(
-        process_stream(message, files),
-        media_type='text/event-stream'
-    )
+    response = await process_request(message, files)
+    return response
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
