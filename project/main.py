@@ -5,6 +5,9 @@ import mlx.core as mx
 from mlx_lm import load, generate
 import json
 import uvicorn
+import pandas as pd
+import csv
+from PyPDF2 import PdfReader
 
 app = FastAPI()
 
