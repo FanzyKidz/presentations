@@ -1,66 +1,71 @@
-from fastapi import FastAPI, UploadFile, File, Form
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
-import openai
 from typing import List
-import os
-from dotenv import load_dotenv
-
-# Load environment variables
-load_dotenv()
-
-# Initialize OpenAI client
-client = openai.OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+import mlx.core as mx
+from mlx_lm import load, generate
+import json
 
 app = FastAPI()
 
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # React dev server
+    allow_origins=["http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-async def process_stream(message: str, files: List[UploadFile]):
-    # Process files if present
-    file_contents = []
-    for file in files:
-        content = await file.read()
-        file_contents.append(f"File '{file.filename}' content: {content.decode('utf-8', errors='ignore')[:1000]}...")
+# Load the model (Mistral 7B by default)
+model, tokenizer = load("mlx-community/Mistral-7B-v0.1-hf-4bit-mlx")
 
-    # Combine message and file contents
-    system_prompt = "You are a helpful AI assistant."
-    user_content = message
-    if file_contents:
-        user_content += "\n\nAttached files:\n" + "\n".join(file_contents)
+async def process_stream(message: str, files: List[UploadFile] = None):
+    try:
+        # Process files if present
+        file_contents = []
+        if files and not isinstance(files, list):
+            files = [files]
+            
+        if files:
+            for file in files:
+                content = await file.read()
+                file_contents.append(f"File '{file.filename}' content: {content.decode('utf-8', errors='ignore')[:1000]}...")
 
-    # Create streaming response using OpenAI
-    stream = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_content}
-        ],
-        stream=True
-    )
+        # Prepare prompt
+        prompt = f"User: {message}"
+        if file_contents:
+            prompt += "\n\nAttached files:\n" + "\n".join(file_contents)
+        prompt += "\n\nAssistant:"
 
-    # Stream the response
-    for chunk in stream:
-        if chunk.choices[0].delta.content is not None:
-            yield chunk.choices[0].delta.content
+        # Generate response
+        tokens = []
+        previous_text = ""
+        
+        for token in generate(model, tokenizer, prompt=prompt, max_tokens=500):
+            tokens.append(token)
+            current_text = tokenizer.decode(mx.array(tokens))
+            new_text = current_text[len(previous_text):]
+            previous_text = current_text
+            
+            if new_text:
+                yield f"data: {json.dumps({'text': new_text})}\n\n"
+        
+        yield "data: [DONE]\n\n"
+    except Exception as e:
+        print(f"Error in stream generation: {str(e)}")
+        yield f"data: {json.dumps({'error': str(e)})}\n\n"
 
 @app.post("/chat")
 async def chat(
-    message: str = Form(...),
-    files: List[UploadFile] = File(default=[])
+    message: str = Form(),
+    files: List[UploadFile] = File(default=None)
 ):
+    print(f"Received message: {message}")  # Debug log
+    if not message or message.strip() == "":
+        raise HTTPException(status_code=400, detail="Message is required")
+    
     return StreamingResponse(
         process_stream(message, files),
         media_type='text/event-stream'
     )
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
