@@ -1,7 +1,7 @@
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
-from typing import List, Optional
+from typing import List
 import mlx.core as mx
 from mlx_lm import load, generate
 import json
@@ -24,6 +24,9 @@ async def process_stream(message: str, files: List[UploadFile] = None):
     try:
         # Process files if present
         file_contents = []
+        if files and not isinstance(files, list):
+            files = [files]
+            
         if files:
             for file in files:
                 content = await file.read()
@@ -55,10 +58,11 @@ async def process_stream(message: str, files: List[UploadFile] = None):
 
 @app.post("/chat")
 async def chat(
-    message: str = Form(...),
-    files: List[UploadFile] = File(None)
+    message: str = Form(),
+    files: List[UploadFile] = File(default=None)
 ):
-    if not message:
+    print(f"Received message: {message}")  # Debug log
+    if not message or message.strip() == "":
         raise HTTPException(status_code=400, detail="Message is required")
     
     return StreamingResponse(
