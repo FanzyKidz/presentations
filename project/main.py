@@ -43,20 +43,18 @@ async def process_stream(message: str, files: Optional[List[UploadFile]] = None)
         tokens = []
         previous_text = ""
 
-        for token in generate(model, tokenizer, prompt=prompt, max_tokens=500):
-            if isinstance(token, int):  # Token is an integer
-                tokens.append(token)
-                current_text = tokenizer.decode(mx.array(tokens))
-                new_text = current_text[len(previous_text):]
-                previous_text = current_text
+        async for generated_text in generate(model, tokenizer, prompt=prompt, max_tokens=500):
+            if isinstance(generated_text, str):  # Directly handle string output
+                new_text = generated_text[len(previous_text):]
+                previous_text = generated_text
 
                 if new_text:
                     yield f"data: {json.dumps({'text': new_text})}\n\n"
             else:
-                # Handle unexpected token types
-                print(f"Skipping invalid token: {token} (type: {type(token)})")
+                print(f"Skipping invalid output: {generated_text} (type: {type(generated_text)})")
 
         yield "data: [DONE]\n\n"
+        
     except Exception as e:
         print(f"Error in stream generation: {str(e)}")
         yield f"data: {json.dumps({'error': str(e)})}\n\n"
