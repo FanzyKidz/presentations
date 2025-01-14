@@ -5,11 +5,13 @@ const API_BASE_URL = 'http://localhost:8000';
 export const sendMessage = async (content: string, files: File[]) => {
   try {
     const formData = new FormData();
-    formData.append('message', content);
+    formData.append('message', content.trim());
     
     if (files && files.length > 0) {
       files.forEach(file => formData.append('files', file));
     }
+
+    console.log('Sending message:', content); // Debug log
 
     const response = await fetch(`${API_BASE_URL}/chat`, {
       method: 'POST',
@@ -17,7 +19,9 @@ export const sendMessage = async (content: string, files: File[]) => {
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorText = await response.text();
+      console.error('Server error:', errorText); // Debug log
+      throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
     }
 
     const reader = response.body?.getReader();
