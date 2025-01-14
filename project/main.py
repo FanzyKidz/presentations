@@ -23,14 +23,41 @@ try:
 except Exception as e:
     raise RuntimeError(f"Error loading the model: {e}")
 
+def process_file(file: UploadFile):
+    try:
+        content = file.file.read()
+        if file.filename.endswith('.csv'):
+            decoded_content = content.decode('utf-8')
+            reader = csv.reader(decoded_content.splitlines())
+            data = [row for row in reader]
+            return f"CSV File Content:\n{data}"
+        elif file.filename.endswith('.json'):
+            json_data = json.loads(content)
+            return f"JSON File Content:\n{json.dumps(json_data, indent=2)}"
+        elif file.filename.endswith(('.xls', '.xlsx')):
+            df = pd.read_excel(file.file)
+            return f"Excel File Content:\n{df.to_string(index=False)}"
+        elif file.filename.endswith('.txt'):
+            decoded_content = content.decode('utf-8')
+            return f"Text File Content:\n{decoded_content}"
+        elif file.filename.endswith('.pdf'):
+            file.file.seek(0)  # Reset file pointer
+            reader = PdfReader(file.file)
+            pdf_text = "\n".join(page.extract_text() for page in reader.pages if page.extract_text())
+            return f"PDF File Content:\n{pdf_text}"
+        else:
+            return f"Unsupported file format: {file.filename}"
+    except Exception as e:
+        return f"Error processing file {file.filename}: {e}"
+
 async def process_request(message: str, files: Optional[List[UploadFile]] = None):
     try:
         # Process files if present
         file_contents = []
         if files:
             for file in files:
-                content = await file.read()
-                file_contents.append(f"File '{file.filename}' content: {content.decode('utf-8', errors='ignore')[:1000]}...")
+                file_content = process_file(file)
+                file_contents.append(file_content)
 
         # Prepare prompt
         prompt = f"User: {message}"
