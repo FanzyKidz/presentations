@@ -44,18 +44,22 @@ async def process_stream(message: str, files: Optional[List[UploadFile]] = None)
         previous_text = ""
 
         for token in generate(model, tokenizer, prompt=prompt, max_tokens=500):
-            tokens.append(token)
-            current_text = tokenizer.decode(mx.array(tokens))
-            new_text = current_text[len(previous_text):]
-            previous_text = current_text
+            if isinstance(token, int):  # Ensure token is an integer
+                tokens.append(token)
+                current_text = tokenizer.decode(mx.array(tokens))
+                new_text = current_text[len(previous_text):]
+                previous_text = current_text
 
-            if new_text:
-                yield f"data: {json.dumps({'text': new_text})}\n\n"
+                if new_text:
+                    yield f"data: {json.dumps({'text': new_text})}\n\n"
+            else:
+                print(f"Invalid token type: {token} (expected int)")
 
         yield "data: [DONE]\n\n"
     except Exception as e:
         print(f"Error in stream generation: {str(e)}")
         yield f"data: {json.dumps({'error': str(e)})}\n\n"
+
 
 @app.post("/chat")
 async def chat(
