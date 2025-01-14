@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8000'; // Update with your Python API URL
+const API_BASE_URL = 'http://localhost:8000';
 
 export const sendMessage = async (content: string, files: File[]) => {
   const formData = new FormData();
@@ -17,15 +17,33 @@ export const sendMessage = async (content: string, files: File[]) => {
 
   return {
     async *[Symbol.asyncIterator]() {
+      const decoder = new TextDecoder();
+      let buffer = '';
+
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
         
-        const text = new TextDecoder().decode(value);
-        const chunks = text.split('\n').filter(Boolean);
-        
-        for (const chunk of chunks) {
-          yield chunk;
+        // Keep the last partial line in the buffer
+        buffer = lines.pop() || '';
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            const data = line.slice(6);
+            if (data === '[DONE]') break;
+            
+            try {
+              const parsed = JSON.parse(data);
+              if (parsed.text) {
+                yield parsed.text;
+              }
+            } catch (e) {
+              console.error('Error parsing SSE data:', e);
+            }
+          }
         }
       }
     }
