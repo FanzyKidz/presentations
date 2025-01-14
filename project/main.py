@@ -4,7 +4,7 @@ from fastapi.responses import StreamingResponse
 from typing import List
 import mlx.core as mx
 from mlx_lm import load, generate
-import os
+import json
 
 app = FastAPI()
 
@@ -38,11 +38,24 @@ async def process_stream(message: str, files: List[UploadFile]):
 
     # Generate response with streaming
     tokens = []
-    for token in generate(model, tokenizer, prompt=prompt, max_tokens=500):
-        tokens.append(token)
-        # Convert token to text and yield
-        text = tokenizer.decode(mx.array(tokens))
-        yield text
+    previous_text = ""
+    
+    try:
+        for token in generate(model, tokenizer, prompt=prompt, max_tokens=500):
+            tokens.append(token)
+            # Convert token to text and yield only the new content
+            current_text = tokenizer.decode(mx.array(tokens))
+            new_text = current_text[len(previous_text):]
+            previous_text = current_text
+            
+            if new_text:
+                yield f"data: {json.dumps({'text': new_text})}\n\n"
+        
+        # Send end of stream
+        yield "data: [DONE]\n\n"
+    except Exception as e:
+        print(f"Error in stream generation: {str(e)}")
+        yield f"data: {json.dumps({'error': str(e)})}\n\n"
 
 @app.post("/chat")
 async def chat(
@@ -51,9 +64,9 @@ async def chat(
 ):
     return StreamingResponse(
         process_stream(message, files),
-        media_type='text/event-stream'
+        media_type='text/event-stream',
+        headers={
+            'Cache-Control': 'no-cache',
+            'Connection': 'keep-alive',
+        }
     )
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
