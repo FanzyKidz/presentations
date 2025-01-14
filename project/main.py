@@ -8,6 +8,8 @@ import uvicorn
 import pandas as pd
 import csv
 from PyPDF2 import PdfReader
+from docx import Document
+from pptx import Presentation
 
 app = FastAPI()
 
@@ -48,6 +50,19 @@ def process_file(file: UploadFile):
             reader = PdfReader(file.file)
             pdf_text = "\n".join(page.extract_text() for page in reader.pages if page.extract_text())
             return f"PDF File Content:\n{pdf_text}"
+        elif file.filename.endswith('.docx'):
+            file.file.seek(0)  # Reset file pointer
+            doc = Document(file.file)
+            doc_text = "\n".join(paragraph.text for paragraph in doc.paragraphs)
+            return f"Word File Content:\n{doc_text}"
+        elif file.filename.endswith('.pptx'):
+            file.file.seek(0)  # Reset file pointer
+            presentation = Presentation(file.file)
+            slides_text = []
+            for slide in presentation.slides:
+                slide_text = "\n".join(shape.text for shape in slide.shapes if hasattr(shape, "text"))
+                slides_text.append(slide_text)
+            return f"PowerPoint File Content:\n{'\n'.join(slides_text)}"
         else:
             return f"Unsupported file format: {file.filename}"
     except Exception as e:
